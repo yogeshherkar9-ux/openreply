@@ -1,6 +1,6 @@
 # Reel Motion-Graphics Rulebook
 
-The approved style, layout and animation rules for 9:16 reels, built up and signed off over the session logged in [`CONVERSATION.md`](CONVERSATION.md) (16–17 Nov 2026). Everything here was approved by the user unless it is marked **Open** or **Not approved yet**.
+The approved style, layout and animation rules for 9:16 reels, built up and signed off over the session logged in [`CONVERSATION.md`](CONVERSATION.md) (16–17 Nov 2026). Everything here was approved by the user unless it is marked **Open** or **Not approved yet**. Sections 1–11 are Style A; the shared rules (layout safe zone, no overlaps, motion principles, text motion, QA, sound) apply to every style.
 
 | | |
 |---|---|
@@ -9,6 +9,7 @@ The approved style, layout and animation rules for 9:16 reels, built up and sign
 | Motion reference | "This is Cristiano Ronaldo…" edit, 14.4 s (analysed frame by frame) |
 | First project | Mira Bhayandar East, 1 & 2 BHK property reel (Hinglish voiceover) |
 | Approved beats | `templates/balcony.html` → `templates/location.html` → `templates/pricing.html` (18 s continuous) |
+| Styles | **A** graphic-led brand documentary (§1–11) · **B** talking-head podcast editorial (§13) · **C** diagram explainer (§14) |
 
 ---
 
@@ -254,3 +255,81 @@ Continuity chain: **balcony → location → pricing**, 18 s, `examples/` (still
 - **Sound guide** from the user before any SFX or music.
 - **Script facts to confirm:** "khadi" read as creek; "foil area" read as foyer; "terah carpet area" but only five sizes listed; the real floor plan; project name and phone number for the end card.
 - **Next beats:** hook frame (lead with the 5 BHK merge or the view) and the 2 + 2 → 5 BHK merge graphic.
+
+---
+
+## 13. Style B: talking-head podcast editorial
+
+**Approved:** "I approved your loop understood style and reference results". Built from 5 dopemotionzone podcast reels plus 10 still references, measured frame by frame, then matched to the references in a side-by-side loop. Example frames: `styles/style-b/frames.html` → `styles/style-b/renders/frame1–4.png`.
+
+### 13.1 Structure and pacing (measured across 120 shots)
+- The speaker carries the story: **45–60% of runtime**. Re-cut the same take wide/medium/close for fake multi-cam; every cut is a punch-in.
+- **Graphic pages hold 2–5 s** (one idea, readable). **Stock B-roll 1–2 s** (a mood beat). **0.1–0.2 s flash montage only as a hook** (first 2 s).
+- Captions change every **0.3–0.6 s**, so even a 6 s speaker hold never feels static.
+
+### 13.2 Typography
+| Role | Face | Spec (at 1080×1920) |
+|---|---|---|
+| Hero key word (paper pages + captions) | **Google Sans Flex** (round geometric, matches the references) | Semibold 600, 106–122 px, tracking −0.03/−0.04 em |
+| Setup line | Google Sans Flex | Light 300 / Regular 400, 42–64 px |
+| Editorial headings, caps lines ("EMOTION", "DO HARD THINGS") | **Inter Display** | Bold 700, 112 px caps; setup Light/Regular |
+| Small paragraphs, numbers, labels | Inter Display | Regular 22–25 px, grey `#5f5b55` (texture, not content) |
+| Optional contrast faces (per video) | Instrument Serif Italic · IBM Plex Mono · Playfair Italic (names) | one per video, never more than 2 families + mono |
+- **Key word ≈ 2.1–2.7× the setup line** when size carries emphasis; ≈1.4× when weight/colour does.
+- Captions are **centred**, block centred at **49–61% of frame height** (lower chest). Names may be huge at the top (20–26%) or a boxed tag at 62–66%, left.
+
+### 13.3 Colour (sampled)
+- Paper `#f4f2ec` (warm) with a **12 px dot grid** (`rgba(0,0,0,.045)`). Dark contrast pages `#220e08–#3c1000`.
+- **One accent per video.** Default pairing (v1): copper box `#c0846a`, cream text `#f6efe4` / `#f7f0e6`. Other measured pairings: orange `#ec7016`, maroon `#521a17`, lime `#bfc76e`, gold `#eecd63 → #fadd76`.
+
+### 13.4 Caption treatments on footage
+1. **No box:** cream Semibold key word + **copper dot as the full stop** ("enough yet●").
+2. **Left-aligned caps:** "Because when you / **DO HARD THINGS** / in life through", with a **warm copper-tinted bottom gradient**.
+3. **Box:** cream box with copper text (or copper box with cream text) behind one word.
+- Always a **dark gradient over the bottom ~40%** of footage so white text reads.
+
+### 13.5 Page layouts (templates in `styles/style-b/frames.html`)
+| Layout | Recipe |
+|---|---|
+| **Carousel** ("We choose / Doom Scrolling") | Centred setup + copper-box key word, short copper rule; hero photo centred with a **4 px white border**, side photos shorter and vertically centred, cropped by the frame edges; `•••`; small centred paragraph |
+| **Editorial split** ("is an / EMOTION / regulation problem") | Top-left mark + tri-colour bar, `•••` + page number, number strip top-right; photos **square-cornered, no shadow, bleeding off opposite edges**; giant faded letters cropped at the edge; Light setup → Bold caps → copper box sub-label |
+| **Bracket labels** ("Procrastination") | `[Label]` words, small copper squares, photo with a thin copper strip on its edge, copper label box overlapping the photo edge |
+| **Data page** (yellow bars) | Rounded bars with accent gradient over a pale track, flag labels on a dot, huge faint ring behind; use only when the script has numbers |
+
+### 13.6 Shapes, images and why
+- Every shape has one job: **direct the eye** (boxes, dots, rules), **hold content** (photos, pills, bars), or **give depth/motion** (rings, cropped edges, giant letters).
+- **Real imagery is the hero.** Order of preference: the client's real footage/photos → free licensed photos (Openverse/Wikimedia/Flickr, licence logged in `CREDITS.md`) → AI-generated images clearly marked as placeholders. Never present a generated person as a real one.
+- Free B-roll/images are fetched through the **"Reel media"** cloud environment (Wikimedia, Openverse, Flickr, Figma downloads allowed).
+
+---
+
+## 14. Style C: diagram explainer
+
+**Approved:** "yes" (after the frame-rebuild loop). Built from the peter.visuals "Formula for viral content" reel; two reference frames were rebuilt and looped to **0.72 / 0.81 ink overlap** (`styles/style-c/rebuild.html` → `styles/style-c/renders/`).
+
+### 14.1 Concept
+- **One object tells the whole story.** No footage, no B-roll, no images: a single diagram whose parts are the steps of the idea.
+- The **camera tours that object**: build → zoom into a node → explain → rotate to the next node → … → **pull back to the whole map** with a save CTA ("Screenshot this").
+- Best for scripts that list steps, parts or a framework.
+
+### 14.2 Geometry (at the reference's 720×1280; scale ×1.5 for 1080)
+- Core: **octagon, vertex pointing up**, spokes leave from the 8 corners at 45° steps.
+- Radii (overview): outer thin outline **115**, dark fill **105**, inner white outline **93**, spoke end / node dot **200**; dot r ≈ 6; strokes ≈ 1.3 px.
+- Inside the core: small "Formula for" (≈16 px) over big "Viral content" (≈28 px) — two-tier.
+- Node labels centred on the spoke line just outside the dot; overview labels ≈ 24 px Medium/SemiBold.
+- Close-up = the same diagram at **2.36×**, centred low (core centre at ≈ 88% height) so the active node sits mid-frame.
+
+### 14.3 Colour and type
+- **Strictly monochrome:** bg `#f4f4f4` + 9 px dot grid; ink/core `#272727`; interstitials `#0a0a0a`; white text on dark. Motion and layout do the emphasis.
+- One family: **Inter Display**, Medium/SemiBold, tight tracking.
+
+### 14.4 Motion (measured)
+| Move | Spec |
+|---|---|
+| Intro build | from a dot; spokes and black placeholder bars shoot out; core grows **×5.5 in 2.1 s**, strong ease-out (most growth in the first 0.7 s) |
+| Node change | whole diagram rotates **45°** in ≈ **0.45 s**, ease-in-out, edge text motion-blurs, tiny settle |
+| Node label | **typewriter**: black block appears → letters type behind a block cursor (~1 char / 2 frames) → thin blinking bar → gone |
+| Captions | word by word in the top half, each word blur→sharp in ≈ 3 frames; punch word heavier and bigger |
+| Interstitial | cut to `#0a0a0a` for the turn line ("But there's one more thing", "But this is where most people mess up"), 1.4–1.6 s, then cut back |
+| Outro | pull back to the full diagram with a blur-in, "Screenshot this" above; end on black |
+- Pacing (23.6 s, 7 shots): intro 2.4 s → node tour 1.5–2.5 s per node → interstitial → tour → interstitial → CTA → overview ≈ 3 s.
