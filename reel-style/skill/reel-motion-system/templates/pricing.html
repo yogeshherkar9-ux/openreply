@@ -1,0 +1,121 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="assets/fonts.css">
+<!-- Pricing beat (6s). Enters on the solid blue the location beat ends on; the blue collapses into the 686 bar.
+     Bars rise + count up (VO reads sizes first), then the price lands. Exit: text fades, scene whips up. -->
+<style>
+:root{--blue:#1f5fff;--cyan:#22b8f0;
+  --out:cubic-bezier(.16,1,.3,1);--in:cubic-bezier(.7,0,.84,0);--io:cubic-bezier(.65,0,.35,1);--pop:cubic-bezier(.34,1.56,.64,1)}
+@property --n{syntax:'<integer>';inherits:true;initial-value:0}
+*{margin:0;box-sizing:border-box}
+body{width:1080px;height:1920px;overflow:hidden;font-family:"Inter Display",Inter,sans-serif;color:#f2f3f5;
+  background:radial-gradient(ellipse at 50% 35%,#1d2129 0%,#0b0c0f 55%,#000 100%)}
+.grain{position:absolute;inset:0;z-index:60;pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1.5px);background-size:5px 5px;mix-blend-mode:screen}
+.abs{position:absolute}
+.key{font-weight:800;letter-spacing:-.06em;background:linear-gradient(90deg,var(--blue),var(--cyan));-webkit-background-clip:text;color:transparent}
+
+/* ---------- camera ---------- */
+#cam{position:absolute;inset:0;animation:exitUp .62s linear 5.38s both}
+@keyframes exitUp{0%{transform:none;animation-timing-function:var(--out)}
+  25%{transform:translateY(34px) scale(.99);animation-timing-function:var(--in)}
+  100%{transform:translateY(-2100px) scale(.96)}}
+#drift{position:absolute;inset:0;transform-origin:540px 900px;animation:drift 4.4s var(--io) 1.0s both}
+@keyframes drift{from{transform:scale(1)}to{transform:scale(1.04)}}
+
+/* ---------- carried element: full-screen blue -> 686 bar ---------- */
+.morph{position:absolute;background:var(--blue);overflow:hidden;z-index:5;animation:morph 1.1s linear both}
+@keyframes morph{
+  0%,13.6%{left:-40px;top:-40px;width:1160px;height:2000px;border-radius:0;animation-timing-function:var(--out)}
+  27%{left:-10px;top:30px;width:1100px;height:1860px;border-radius:40px;animation-timing-function:var(--io)}  /* anticipation: pulls in */
+  72.7%{left:170px;top:760px;width:121px;height:520px;border-radius:14px;animation-timing-function:var(--out)}
+  81.8%{left:164px;top:800px;width:133px;height:480px;border-radius:14px;animation-timing-function:var(--io)}  /* squash on landing */
+  92%{left:171px;top:750px;width:119px;height:530px;border-radius:14px;animation-timing-function:var(--io)}
+  100%{left:170px;top:760px;width:121px;height:520px;border-radius:14px}}
+.morph i{position:absolute;inset:0;background:linear-gradient(#cfe8ff,#1f5fff 70%,#0d2a7a);opacity:0;animation:fadeIn .35s var(--io) .78s forwards}
+@keyframes fadeIn{to{opacity:1}}
+
+/* ---------- other bars rise from the floor, stretch, settle ---------- */
+.bar{position:absolute;bottom:640px;width:121px;border-radius:14px;background:#ffffff14;border:2px solid #ffffff30;transform-origin:50% 100%;
+  animation:barUp .6s linear both}
+@keyframes barUp{0%{transform:scaleY(0);animation-timing-function:var(--out)}
+  55%{transform:scale(.95,1.06);animation-timing-function:var(--io)}
+  80%{transform:scale(1.02,.98);animation-timing-function:var(--io)}100%{transform:none}}
+
+/* ---------- numbers count up as their bar lands ---------- */
+.num{position:absolute;top:1300px;width:121px;text-align:center;font-weight:600;font-size:40px;letter-spacing:-.03em;
+  }
+.num::after{counter-reset:n var(--n);content:counter(n)}
+@keyframes c686{from{--n:0}to{--n:686}}@keyframes c678{from{--n:0}to{--n:678}}@keyframes c652{from{--n:0}to{--n:652}}@keyframes c644{from{--n:0}to{--n:644}}@keyframes c575{from{--n:0}to{--n:575}}
+@keyframes numIn{from{opacity:0;transform:translateY(16px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+
+/* ---------- price ---------- */
+@keyframes upIn{from{opacity:0;transform:translateY(40px);filter:blur(16px)}to{opacity:1;transform:none;filter:none}}
+.cr{display:inline-block;animation:rise36 .75s var(--key) 2.04s both, reveal .3s var(--rev) 2.04s both, glow 1.1s var(--io) 4.2s forwards}
+@keyframes punch{
+  0%{opacity:0;transform:translateY(60px) scale(.7);filter:blur(20px);animation-timing-function:var(--out)}
+  10%{opacity:.4;transform:translateY(64px) scale(.68);filter:blur(16px);animation-timing-function:var(--out)} /* tiny dip = anticipation */
+  45%{opacity:1;transform:translateY(-8px) scale(1.06,.94);filter:blur(0);animation-timing-function:var(--io)}
+  72%{transform:translateY(2px) scale(.98,1.02);animation-timing-function:var(--io)}
+  100%{opacity:1;transform:none}}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 0 rgba(31,95,255,0))}45%{filter:drop-shadow(0 0 30px rgba(31,95,255,.6))}}
+
+/* ---------- hold: light sweep across the bars ---------- */
+.bar{overflow:hidden}
+.bar u,.morph u{position:absolute;top:-10%;left:-120px;width:90px;height:120%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-14deg);opacity:0;animation:sweep .45s var(--io) forwards}
+@keyframes sweep{from{opacity:1;transform:translateX(0) skewX(-14deg)}to{opacity:1;transform:translateX(330px) skewX(-14deg)}}
+
+.txtout{animation:txtout .22s var(--io) 5.2s forwards}
+@keyframes txtout{to{opacity:0;filter:blur(6px)}}
+
+/* fixed anchor: brackets, dark on the incoming blue, light once the dark scene is revealed */
+.br{position:absolute;width:44px;height:44px;border-style:solid;border-width:0;z-index:55;border-color:#2a2d33;animation:brc .4s var(--io) .45s forwards}
+@keyframes brc{to{border-color:#ffffff66}}
+
+/* ---- text motion, measured from the reference ----
+   words: rise 36px, 0.45s on --txt; blur/opacity clear first (0.2s, --rev).
+   key word: 0.75s on --key, no overshoot/squash; then .kw breathes +2.5% through the hold. */
+:root{--txt:cubic-bezier(.2,.3,0,.8);--key:cubic-bezier(.3,.65,.45,.85);--rev:cubic-bezier(.2,.7,.3,1)}
+@keyframes rise36{from{transform:translateY(36px)}to{transform:none}}
+@keyframes reveal{from{opacity:0;filter:blur(16px)}to{opacity:1;filter:blur(0)}}
+@keyframes breathe{from{transform:scale(1)}to{transform:scale(1.025)}}
+.kw{display:inline-block;transform-origin:50% 60%;animation:breathe var(--bl) var(--io) var(--bd) both}
+</style></head><body>
+<div id="cam"><div id="drift">
+
+  <div class="txtout">
+    <div class="abs" style="top:330px;left:0;width:100%;text-align:center;font-weight:300;font-size:54px;letter-spacing:-.03em;color:#9aa0ab;
+      animation:rise36 .45s var(--txt) 1.7s both, reveal .2s var(--rev) 1.7s both">2 BHK pricing</div>
+    <div class="abs" style="top:410px;left:0;width:100%;text-align:center;white-space:nowrap;line-height:1;font-size:118px">
+      <span style="display:inline-block;font-weight:300;letter-spacing:-.05em;color:#c9ccd3;animation:rise36 .45s var(--txt) 1.87s both, reveal .2s var(--rev) 1.87s both">₹1.10 –</span>
+      <span class="kw" style="--bd:2.79s;--bl:2.4s"><span class="key cr" style="font-size:150px">1.37 Cr</span></span></div>
+    <div class="abs" style="top:600px;left:0;width:100%;text-align:center;font-weight:400;font-size:34px;letter-spacing:-.02em;color:#7d828d;
+      animation:rise36 .45s var(--txt) 2.7s both, reveal .2s var(--rev) 2.7s both">+ stamp duty · registration · GST alag se</div>
+  </div>
+
+  <div class="bar" style="left:325px;height:514px;animation-delay:.85s"><u style="animation-delay:3.18s"></u></div>
+  <div class="bar" style="left:480px;height:494px;animation-delay:.94s"><u style="animation-delay:3.26s"></u></div>
+  <div class="bar" style="left:634px;height:488px;animation-delay:1.03s"><u style="animation-delay:3.34s"></u></div>
+  <div class="bar" style="left:789px;height:436px;animation-delay:1.12s"><u style="animation-delay:3.42s"></u></div>
+  
+
+  <div class="txtout">
+    <div class="num" style="left:170px;color:#6fa0ff;animation:numIn .45s var(--out) .95s both, c686 .6s var(--out) .95s both"></div>
+    <div class="num" style="left:325px;animation:numIn .45s var(--out) 1.05s both, c678 .6s var(--out) 1.05s both"></div>
+    <div class="num" style="left:480px;animation:numIn .45s var(--out) 1.14s both, c652 .6s var(--out) 1.14s both"></div>
+    <div class="num" style="left:634px;animation:numIn .45s var(--out) 1.23s both, c644 .6s var(--out) 1.23s both"></div>
+    <div class="num" style="left:789px;animation:numIn .45s var(--out) 1.32s both, c575 .6s var(--out) 1.32s both"></div>
+    <div class="abs" style="top:1362px;left:170px;width:740px;text-align:center;font-size:24px;color:#7d828d;letter-spacing:.2em;
+      animation:rise36 .45s var(--txt) 1.55s both, reveal .2s var(--rev) 1.55s both">CARPET AREA · SQ FT</div>
+  </div>
+
+  <div class="morph"><i></i><u style="animation-delay:3.1s"></u></div>
+</div></div>
+
+<div class="br" style="left:90px;top:230px;border-left-width:4px;border-top-width:4px"></div>
+<div class="br" style="left:946px;top:230px;border-right-width:4px;border-top-width:4px"></div>
+<div class="br" style="left:90px;top:1396px;border-left-width:4px;border-bottom-width:4px"></div>
+<div class="br" style="left:946px;top:1396px;border-right-width:4px;border-bottom-width:4px"></div>
+<div class="grain"></div>
+</body></html>

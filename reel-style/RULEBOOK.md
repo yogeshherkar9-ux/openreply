@@ -187,6 +187,7 @@ ffmpeg -framerate 240 -i /tmp/fr/f%05d.jpg \
 node tools/seek1.js approved/balcony.html 5999 end.png
 ```
 
+- **Fonts are self-hosted:** `assets/fonts.css` loads six Inter Display weights (300–800) from `assets/fonts/` (SIL OFL licence in `assets/fonts/OFL.txt`), so renders don't depend on installed fonts. The renderers force every face to load before capturing.
 - `render.js` pauses every CSS animation and seeks it to each frame time, so renders are deterministic.
 - 4 samples per frame showed ghosting on fast zooms; **8 samples per frame is the standard.**
 - `tools/measure.py` and `tools/pan.py` are the reference-analysis tools (per-word position, opacity and sharpness; phase-correlation pan speed). Use them on any new reference before copying its motion.

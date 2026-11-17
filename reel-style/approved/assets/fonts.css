@@ -1,0 +1,7 @@
+/* Inter Display, self-hosted so renders don't depend on the machine's installed fonts. Licence: fonts/OFL.txt */
+@font-face{font-family:"Inter Display";font-style:normal;font-weight:300;font-display:block;src:url("fonts/InterDisplay-Light.woff2") format("woff2")}
+@font-face{font-family:"Inter Display";font-style:normal;font-weight:400;font-display:block;src:url("fonts/InterDisplay-Regular.woff2") format("woff2")}
+@font-face{font-family:"Inter Display";font-style:normal;font-weight:500;font-display:block;src:url("fonts/InterDisplay-Medium.woff2") format("woff2")}
+@font-face{font-family:"Inter Display";font-style:normal;font-weight:600;font-display:block;src:url("fonts/InterDisplay-SemiBold.woff2") format("woff2")}
+@font-face{font-family:"Inter Display";font-style:normal;font-weight:700;font-display:block;src:url("fonts/InterDisplay-Bold.woff2") format("woff2")}
+@font-face{font-family:"Inter Display";font-style:normal;font-weight:800;font-display:block;src:url("fonts/InterDisplay-ExtraBold.woff2") format("woff2")}

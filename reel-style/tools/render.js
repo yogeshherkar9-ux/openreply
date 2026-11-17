@@ -7,7 +7,7 @@ const [,, page, out, secs = 6, fps = 30, sub = 1] = process.argv;
   const b = await chromium.launch();
   const p = await b.newPage({viewport: {width: 1080, height: 1920}});
   await p.goto('file://' + require('path').resolve(page));
-  await p.evaluate(() => document.fonts.ready);
+  await p.evaluate(() => Promise.all([...document.fonts].map(f => f.load())).then(() => document.fonts.ready));
   const n = secs * fps, S = +sub;
   let k = 0;
   for (let i = 0; i < n; i++) for (let s = 0; s < S; s++) {
